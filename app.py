@@ -92,7 +92,8 @@ def generate_weekly_plan(user_schedule_input: str, fitness_metrics: dict, curren
                 temperature=0.3
             ),
         )
-        return structured_plan_json := WeeklyPlan.model_validate_json(response.text)
+        structured_plan_json = WeeklyPlan.model_validate_json(response.text)
+        return structured_plan_json
     except Exception as e:
         st.error(f"Error generating workout plan with Gemini: {e}")
         return None
